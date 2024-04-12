@@ -1,5 +1,5 @@
 # piscine_object
-school 542 object oorient piscine, there are those Modules followe:
+school 42 object orient piscine project, there are those Modules followe:
 
 • Module 00 - Encapsulation
     This module will introduce you to the concept of encapsulation.
