@@ -16,7 +16,7 @@ school 42 object orient piscine project, there are those Modules followe:
   This module will introduce you to the concept of SMART, one of the many acronym
   software developer use.
   
-• Module 04 - Design Pattern
+• Module 04 - Design Pattern :
   This module will introduce you to the Gang of Four design patterns.
   
 • Module 05 - Pratical work : 
