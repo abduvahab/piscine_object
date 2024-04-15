@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 12:31:37 by areheman          #+#    #+#             */
-/*   Updated: 2024/04/12 12:35:05 by areheman         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:26:44 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define BANK_HPP
 
 #include "iostream"
-#include "./Accouint"
+#include "./Account.hpp"
 #include "vector"
 
 class Account;
@@ -28,10 +28,12 @@ class Bank{
   public:
     Bank(const double fund);
     Bank(const Bank& obj);
-    Bank operator=(const Bank& obj);
+    Bank& operator=(const Bank& obj);
+    ~Bank();
+    // friend std::ostream& operator<<(const std::ostream& o, const Bank &bank);
 
+};
 
-}
-
+std::ostream&  operator<<(std::ostream& o, Bank &bank);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Accoiunt.hpp                                       :+:      :+:    :+:   */
+/*   Account.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 12:13:55 by areheman          #+#    #+#             */
-/*   Updated: 2024/04/12 12:37:25 by areheman         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:28:21 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ class Account{
     double balance;
     Bank &bank;
 
-    Account(const int id, const double &balance);
-    Account(const Account& obj);
+    Account(const double balance=0, const Bank bank);
+    Account(const Account &obj);
     Account& operator=(const Account& obj);
     
   public:
-    
+    ~Account();
 
-}
 
+};
 
 #endif
