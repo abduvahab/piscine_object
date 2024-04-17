@@ -2,7 +2,7 @@ NAME=bank
 GCC = g++
 CFLAGS= -Wall -Wextra -Werror -std=c++98
 
-SRCS= main.cpp
+SRCS= main.cpp Account.cpp Bank.cpp
 OBJS=$(SRCS:.cpp=.o)# there is no space between ":"and ".cpp"
 
 all:$(NAME)
