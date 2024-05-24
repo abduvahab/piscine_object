@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:53:31 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/20 17:46:41 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:21:10 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ class Worker{
     void removeTool(Tool &tool);
     bool work(WorkShop &workshop);
     void registerToWorkshop(WorkShop& workshop);
-    std::set<WorkShop*>::iterator leaveWorkshop(WorkShop& workshop);
+    void leaveWorkshop(WorkShop& workshop);
     bool hasNecessaryTool(WorkShop& workshop);
     void printNameofTool();
 
@@ -77,7 +77,7 @@ class Worker{
           return specificTool;
         }
       }
-      return nullptr;
+      return NULL;
     }
 
 #endif

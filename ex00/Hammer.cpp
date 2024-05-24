@@ -25,7 +25,7 @@ Hammer& Hammer::operator=(const Hammer& other){
 }
 
 Hammer::~Hammer(){
-  currentWorker = nullptr;
+  currentWorker = NULL;
   whoIam2("Hammer distructor");
 }
 

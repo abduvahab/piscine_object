@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:47:40 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/20 17:26:27 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:16:23 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ class WorkShop{
     void setType();
 
     bool addWorker(Worker& worker);
-    std::set<Worker *>::iterator removeWorker(Worker& worker);
-    std::set<Worker *>::iterator deleteWorker(Worker& worker);
+    void removeWorker(Worker& worker);
+    void deleteWorker(Worker& worker);
     // void executeWorkDay();
     bool checkRequiredTool(Worker& worker);
     const std::type_info* getRequiredType();

@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:47:40 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/15 16:12:38 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:47:46 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ class WorkShop{
 
     void addWorker(Worker& worker);
     void removeWorker(Worker& worker);
+    std::vector<Worker*>::iterator deleteWorker(Worker& worker);
     void executeWorkDay();
+    void printWorker();
 
 };
 

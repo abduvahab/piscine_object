@@ -1,6 +1,6 @@
 #include "./WorkShop.hpp"
 
-WorkShop::WorkShop():worker_list(),required_type(nullptr){
+WorkShop::WorkShop():worker_list(),required_type(NULL){
     std::cout<<"workshop constructor"<<std::endl;
     // required_type = &typeid(ToolType);
 }
@@ -23,7 +23,7 @@ WorkShop::~WorkShop(){
 }
 
 bool WorkShop::addWorker(Worker& worker){
-    if(required_type == nullptr){
+    if(required_type == NULL){
         return false;
     }
     if(checkRequiredTool(worker)){
@@ -35,26 +35,32 @@ bool WorkShop::addWorker(Worker& worker){
     
 }
 
-std::set<Worker *>::iterator WorkShop::removeWorker(Worker& worker){
+// std::set<Worker *>::iterator WorkShop::removeWorker(Worker& worker){
+void WorkShop::removeWorker(Worker& worker){
+    // for (std::set<Worker *>::iterator it = worker_list.begin(); it != worker_list.end();){
+    //     if((*it) == &worker){
+    //         worker_list.erase(it);
+    //         worker.leaveWorkshop(*this);
+    //     }
+    // }
     std::set<Worker *>::iterator it = worker_list.find(&worker);
     if( it != worker_list.end()){
-        it = worker_list.erase(it);
+        worker_list.erase(it);
         worker.leaveWorkshop(*this);
         std::cout<<worker.getName()<<" is removed from workshop"<<std::endl;
-        return it;
+        return;
     }
-    return it;
 }
 
-std::set<Worker *>::iterator WorkShop::deleteWorker(Worker& worker){
+void WorkShop::deleteWorker(Worker& worker){
     std::set<Worker *>::iterator it = worker_list.find(&worker);
     if( it != worker_list.end()){
-        it = worker_list.erase(it);
+         worker_list.erase(it);
         // worker.leaveWorkshop(*this);
         std::cout<<worker.getName()<<" is removed from workshop"<<std::endl;
-        return it;
+        return ;
     }
-    return it;
+    return ;
 }
 
 
@@ -71,7 +77,8 @@ void WorkShop::executeWorkDay(){
     std::set<Worker*>::iterator it=worker_list.begin();
     while ( it!=worker_list.end()){
         if(!(*it)->work(*this)){
-            it = deleteWorker(**it);
+           deleteWorker(**it++);
+        //    it++;
         }
         else{
             it++;
@@ -91,7 +98,8 @@ void WorkShop::updateAfterSetType(){
     std::set<Worker*>::iterator it = worker_list.begin(); 
     while(it != worker_list.end()){
       if(!(*it)->hasNecessaryTool(*this)){
-          it = this->removeWorker(**it);
+          this->removeWorker(**it++);
+        //   it++;
       }
       else{
         it++;

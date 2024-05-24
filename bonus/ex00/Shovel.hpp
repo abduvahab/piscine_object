@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:39:52 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/15 12:57:14 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:01:18 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 class Worker;
 
 class Shovel:public Tool{
-  private:
-  std::string name_tool;
+  // private:
+  // std::string name_tool;
 
   public:
     Shovel();

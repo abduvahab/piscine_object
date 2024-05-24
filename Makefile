@@ -1,6 +1,6 @@
 NAME=relation
-GCC=g++
-CFLAGS=-Wall -Wextra -Werror
+GCC=c++
+CFLAGS=-Wall -Wextra -Werror -std=c++98
 
 
 SRC_PREFIX = ex00/

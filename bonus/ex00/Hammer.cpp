@@ -4,11 +4,11 @@ void whoIam2(const std::string myname){
   std::cout<<myname<<std::endl;
 }
 
-Hammer::Hammer():Tool(),name_tool("hammer"){
+Hammer::Hammer():Tool("hammer"){
   whoIam2("Hammer Constructor without arguments");
 }
 
-Hammer::Hammer(const Hammer& other):Tool(){
+Hammer::Hammer(const Hammer& other):Tool(other.name_tool){
   whoIam2("Hammer copy Constructor ");
   *this = other;
 }
@@ -25,7 +25,7 @@ Hammer& Hammer::operator=(const Hammer& other){
 }
 
 Hammer::~Hammer(){
-  currentWorker = nullptr;
+  currentWorker = NULL;
   whoIam2("Hammer distructor");
 }
 

@@ -43,6 +43,8 @@ Worker& Worker::operator=(const Worker &other){
   this->stat.exp = other.stat.exp;
   this->stat.level = other.stat.level;
   this->name = other.name;
+  this->tools = other.tools;
+  this->workshops = other.workshops;
   return *this;
 }
 
@@ -68,13 +70,16 @@ void Worker::addTool(Tool &tool){
     }
   }
 
-  if(tool.getCurrentWorker() != nullptr){
+  if(tool.getCurrentWorker() != NULL){
     Worker *formerWorker = tool.getCurrentWorker();
     formerWorker->removeTool(tool);
   }
   tools.push_back(&tool);
   tool.setCurrentWorker(*this);
-  std::cout<<this->name<<" has add a "<<tool.getNameOfTool()<<" to box"<<std::endl;
+  std::cout<<this->getName();
+  std::cout<<" has add a ";
+  std::cout<<tool.getNameOfTool();
+  std::cout<<" to box"<<std::endl;
 }
 
 void Worker::removeTool(Tool &tool){
@@ -88,14 +93,13 @@ void Worker::removeTool(Tool &tool){
     }
   }
 
-
   if(isExist){
     std::cout<<this->getName()<<" has removed the "<<tool.getNameOfTool()<<" from box"<<std::endl;
     std::set<WorkShop*>::iterator it= workshops.begin();
     while(it != workshops.end()){
       if(!hasNecessaryTool(**it)){
         (*it)->deleteWorker(*this);
-        it = leaveWorkshop(**it);
+        leaveWorkshop(**it++);
         // it++;
       }
       else{
@@ -112,26 +116,30 @@ void Worker::registerToWorkshop(WorkShop& workshop){
 }
 
 bool Worker::hasNecessaryTool(WorkShop& workshop){
-  if(workshop.getRequiredType() == nullptr){
+  if(workshop.getRequiredType() == NULL){
     return false;
   }
-  std::string class_name = std::string(workshop.getRequiredType()->name()).substr(1);
+  const std::type_info* requiredType = workshop.getRequiredType();
+  std::string requiredTypeName = requiredType->name();
   for(std::vector<Tool*>::iterator it=tools.begin(); it!=tools.end(); it++){
-    if( typeid(**it) == *workshop.getRequiredType()){
+    Tool *tl =*it;
+    const std::type_info &toolType = typeid(*tl);
+    std::string toolTypeName = toolType.name();
+    if( toolTypeName == requiredTypeName){
       return true;
     }
   }
+  std::cout<<"--------------------------------------======================="<<std::endl;
   return false;
 }
 
 
- std::set<WorkShop*>::iterator Worker::leaveWorkshop(WorkShop& workshop){
+void Worker::leaveWorkshop(WorkShop& workshop){
   std::set<WorkShop*>::iterator it=workshops.find(&workshop);
     if(it != workshops.end()){
-      it = workshops.erase(it);
-      return it;
+      workshops.erase(it);
+      return ;
     }
-  return it;
 }
 
 
@@ -162,6 +170,7 @@ bool Worker::work(WorkShop &workshop){
 }
 
 void Worker::printNameofTool(){
+
       std::cout<<this->getName()<<" has tools: ";
    for(std::vector<Tool*>::iterator it=tools.begin(); it!=tools.end(); it++){
       std::cout<<(*it)->getNameOfTool()<<" ";

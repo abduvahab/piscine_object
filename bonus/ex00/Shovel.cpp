@@ -4,11 +4,11 @@ void whoIam(const std::string myname){
   std::cout<<myname<<std::endl;
 }
 
-Shovel::Shovel():Tool(),name_tool("shovel"){
+Shovel::Shovel():Tool("shovel"){
   whoIam("Shovel Constructor without arguments");
 }
 
-Shovel::Shovel(const Shovel& other):Tool(){
+Shovel::Shovel(const Shovel& other):Tool(other.name_tool){
   whoIam("Shovel copy Constructor ");
   *this = other;
 }
@@ -25,7 +25,7 @@ Shovel& Shovel::operator=(const Shovel& other){
 }
 
 Shovel::~Shovel(){
-  currentWorker = nullptr;
+  currentWorker = NULL;
   whoIam("Shovel distructor");
 }
 
@@ -43,9 +43,9 @@ std::string Shovel::getNameOfTool(){
 // }
 
 // void  Shovel::removeCurrentWorker(){
-//   // currentWorker = nullptr;
+//   // currentWorker = NULL;
 //   std::cout<<"the shovel is removed form the worker"<<std::endl;
-//   currentWorker = nullptr;
+//   currentWorker = NULL;
 // }
 
 // Worker *Shovel::getCurrentWorker(){

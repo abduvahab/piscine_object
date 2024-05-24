@@ -1,6 +1,6 @@
 #include "./Tool.hpp"
 
-Tool::Tool():numberOfUses(0),currentWorker(nullptr){};
+Tool::Tool():numberOfUses(0),currentWorker(NULL){};
 
 void  Tool::setCurrentWorker(Worker& worker){
   currentWorker = &worker;
@@ -8,9 +8,9 @@ void  Tool::setCurrentWorker(Worker& worker){
 }
 
 void  Tool::removeCurrentWorker(){
-  // currentWorker = nullptr;
+  // currentWorker = NULL;
   std::cout<<"the "<<this->getNameOfTool()<<" is removed form the worker"<<std::endl;
-  currentWorker = nullptr;
+  currentWorker = NULL;
 }
 
 Worker *Tool::getCurrentWorker(){

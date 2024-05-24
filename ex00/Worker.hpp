@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:53:31 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/15 15:40:29 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:39:43 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ class Worker{
     std::string name;
     Position coordonnee;
     Statistic stat;
-    Tool *tool;
+    // Tool *tool;
+    std::vector<Tool*> tools;
     std::vector<WorkShop*> workshops;
 
   public:
@@ -50,14 +51,16 @@ class Worker{
     Worker& operator=(const Worker &other);
     ~Worker();
 
-    void giveToolToWorker(Tool& shovel);
-    void takeToolFromWorker();
-    void work(WorkShop &workshop);
+    void addTool(Tool &tool);
+    void removeTool(Tool &tool);
+    void removeAllTool();
+    bool work(WorkShop &workshop);
     void registerToWorkshop(WorkShop& workshop);
     void leaveWorkshop(WorkShop& workshop);
     std::string getName()const;
+    void printNameofTool();
 
-  friend std::ostream& operator<<(std::ostream& o, const Worker& obj);
+  // friend std::ostream& operator<<(std::ostream& o, const Worker& obj);
 };
 
 

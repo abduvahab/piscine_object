@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:23:24 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/20 16:39:28 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:58:58 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 // class Worker;
 
 class Hammer:public Tool{
-  private:
-  std::string name_tool;
+  // private:
+  // std::string name_tool;
 
   public:
     Hammer();
