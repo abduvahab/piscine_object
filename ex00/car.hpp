@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:41:38 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/24 18:17:33 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:47:34 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 #include "./SpeedController.hpp"
 #include "./BrakeControl.hpp"
 #include "./Wheel.hpp"
+#include "./Transmission.hpp"
 
 class Car{
     private:
         Engine          engine;
-        // Transmission    transmission;
+        Transmission    transmission;
         Wheel           wheel;
         BrakeControl    brakeControl;
         SpeedController speedController;
@@ -53,6 +54,16 @@ class Car{
 
         void straighten_wheels(){
             wheel.straighten_wheels();
+        }
+
+        void shift_gears_up(){
+            transmission.shfir_gears_up();
+        }
+        void shift_gears_down(){
+            transmission.shfir_gears_down();
+        }
+        void reverse(){
+            transmission.reverse();
         }
 
 };

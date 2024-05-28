@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:31:57 by areheman          #+#    #+#             */
-/*   Updated: 2024/05/24 18:11:41 by areheman         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:52:18 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class BrakeControl{
 
     public:
         void apply_force_on_Brake(float force){
-            print("applied ", force," on the brake");
+            print("applied ", force," units force on the brake");
         }
         void emergencyBrake(){
             print("The Emergency brake applied by maxium force");
