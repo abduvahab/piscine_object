@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:43:57 by areheman          #+#    #+#             */
-/*   Updated: 2024/06/20 15:41:25 by areheman         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:03:53 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Professor:public Staff{
 
     public:
         Professor(std::string p_name):Staff(p_name),_currentCourse(NULL){}
+        ~Professor(){}
+
 
         void assignCourse(Course* p_course){
            _currentCourse = p_course;
@@ -42,7 +44,9 @@ class Professor:public Staff{
 
         // Course* getCurrentCourse(){return _currentCourse;}
 
-        void fillCourseCreateForm(Form* form, std::string course_name, int maxNuberStudent);
+        void fillCourseCreateForm(Form* form, std::string course_name, int maxNuberStudent, Singleton<Course>* courseList);
+        void fillCourseFinishedForm(Form* form, Course* course, Student* student);
+        // void fillNeedMoreClassRoomForm(Form* form);
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:19:40 by areheman          #+#    #+#             */
-/*   Updated: 2024/06/20 16:46:59 by areheman         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:10:31 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "./form.hpp"
 #include "./secretary.hpp"
 #include "./headmaster.hpp"
+#include "./singleton.hpp"
+#include "./singetons.hpp"
 
 
 int main(){
@@ -29,48 +31,58 @@ int main(){
     Course      math("Math");
     Student     jhon("Jhon");
     Professor   prof("com_prof");
+    // ClassroomList& room_list = ClassroomList::getInstance();
+    Singleton<Classroom>& room_list = Singleton<Classroom>::getInstance();
+    Singleton<Course>& course_list = Singleton<Course>::getInstance();
 
-    Form* subForm = secretary.createForm(SubscriptionToCourse);
-    jhon.fillsubscribeForm(subForm, &math);
-    master.receiveForm(subForm);
+    std::cout<<"number of the room1 :"<<room_list.getAllElement().size()<<std::endl;
 
+    // create classroom and a class
     Form* createComputer = secretary.createForm(NeedCourseCreation);
-    prof.fillCourseCreateForm(subForm, "Computer", 15);
+    prof.fillCourseCreateForm(createComputer, "Computer", 15, &course_list);
     // prof.fillCourseCreateForm(createComputer, "Computer", 15);
     master.receiveForm(createComputer);
-    Course* course = NULL;
-    course = prof.getCurrentCourse();
+    master .executeForm();
+
+    Course* course = prof.getCurrentCourse();
     if(course != NULL)
         std::cout<<course->getName()<<std::endl;
 
+    // subscribe to a class
+    Form* subForm = secretary.createForm(SubscriptionToCourse);
+    Form* subscribeToComp = secretary.createForm(SubscriptionToCourse);
+    jhon.fillsubscribeForm(subForm, &math);
+    jhon.fillsubscribeForm(subscribeToComp, course);
+    master.receiveForm(subForm);
+    master.receiveForm(subscribeToComp);
+    master .executeForm();
+    course->printStudent();
+    jhon.printCourse();
 
-    delete course;
-    delete createComputer;
-    delete subForm;
+
+    // graduated the class
+
+    Form* courseFinished = secretary.createForm(CourseFinished);
+    prof.fillCourseFinishedForm(courseFinished, course, &jhon);
+    master.receiveForm(courseFinished);
+    master.executeForm();
+    jhon.printCourse();
+    course->printStudent();
 
 
+    // create more class room 
+    Form* needRoom = secretary.createForm(NeedMoreClassRoom);
+    master.fillCreateRoomForm(needRoom, course, &room_list);
+    master.receiveForm(needRoom);
+    master.executeForm();
 
-    // Classroom   classRoom;
+    std::cout<<"number of the room2 :"<<room_list.getAllElement().size()<<std::endl;
+    course = prof.getCurrentCourse();
 
-    // Professor   Tom("tom");
+    course_list.destruct();
+    room_list.destruct();
+    // delete course;
 
-    // math.assign(&Tom);
-
-    // classRoom.assignCourse(&math);
-
-    // jhon.subscribeCourse(&math);
-
-    // jhon.attendClass(&classRoom);
-
-    // classRoom.printOccupant();
-    
-    // Tom.doClass();
-
-    // jhon.exitClass();
-
-    // jhon.attendClass(&classRoom);
-
-    // std::cout<<"ok"<<std::endl;
     
     return 0;
 }

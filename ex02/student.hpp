@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:38:33 by areheman          #+#    #+#             */
-/*   Updated: 2024/06/20 11:44:29 by areheman         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:05:39 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Student:public Person{
 
     private:
         std::vector<Course*> _subscribedCourse;
-
+        
     public:
         Student(std::string p_name):
                 Person(p_name),
@@ -47,18 +47,14 @@ class Student:public Person{
         void fillsubscribeForm(Form* form, Course* course);
 
         void exitClass(){
-           _currentRoom->exit(this);
+            if(_currentRoom != NULL){
+                _currentRoom->exit(this);
+            }
            this->_currentRoom = NULL;
         }
 
-        void graduate(Course* p_course){
-            if(p_course != NULL){
-                std::cout<<"ok"<<std::endl;
-            }
-            // std::cout<<_name<<" has graduted the course "<<p_course->getName()<<std::endl;
-            std::cout<<"pk"<<std::endl;
-        }
-
+        void graduate(Course* p_course);
+        void printCourse();
 };
 
 

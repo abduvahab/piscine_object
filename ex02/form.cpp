@@ -2,6 +2,8 @@
 #include "./course.hpp"
 #include "./student.hpp"
 #include "professor.hpp"
+#include "classRoom.hpp"
+#include "singleton.hpp"
 
 
 
@@ -33,7 +35,7 @@ void SubscriptionToCourseForm::execute(){
 }
 
 void    SubscriptionToCourseForm::signByStudent(Student* stu){
-    if(course != NULL){
+    if(course != NULL && stu != NULL){
         student = stu;
         _isFormFilled = true;
     }
@@ -45,9 +47,10 @@ void    SubscriptionToCourseForm::signByStudent(Student* stu){
 
 
 // NeedCourseCreationForm
-void NeedCourseCreationForm::signedByProfessor(Professor* prof){
-    if(course_name != ""){
+void NeedCourseCreationForm::signedByProfessor(Professor* prof, Singleton<Course>* courseList){
+    if(course_name != "" && prof != NULL && courseList){
        this->prof =  prof;
+       this->course_list = courseList;
         _isFormFilled = true;
     }
     else{
@@ -60,6 +63,7 @@ void NeedCourseCreationForm::execute(){
         if(prof != NULL){
             Course* new_couurse = new Course(course_name,(maxNumberStudent!=0 ? maxNumberStudent:20));
             new_couurse->assign(prof);
+            course_list->addElement(new_couurse);
             prof->assignCourse(new_couurse);
             std::cout<<course_name<<" course has been created and assigned to "<<prof->getName()<<std::endl;
         }
@@ -72,4 +76,85 @@ void NeedCourseCreationForm::execute(){
 
 
 //NeedMoreClassRoomForm
+
+void NeedMoreClassRoomForm::execute(){
+    if(this->_isSigned){
+        if(classRooms != NULL ){
+            Classroom* new_room = new Classroom();
+            if(course != NULL){
+                new_room->assignCourse(course);
+            }
+            // classRooms->addList(new_room);
+            classRooms->addElement(new_room);
+            std::cout<<" a class room  has been created and added to class room list"<<std::endl;
+        }
+    }
+    else{
+        std::cout<<"the form hasn't been signed "<<std::endl;
+    }
+    // std::cout<<"SubscriptionToCourseForm execute"<<std::endl;
+}
+
+
+// void NeedMoreClassRoomForm::signedByHeadMaster(Course* course, ClassroomList* classRooms){
+//         this->course =  course;
+//         this->classRooms = classRooms;
+//         if(classRooms != NULL){
+//             _isFormFilled = true;
+//         }
+//         else{
+//            std::cout<<"there is no class room list"<<std::endl; 
+//         }
+// }
+void NeedMoreClassRoomForm::signedByHeadMaster(Course* course, Singleton<Classroom>* classRooms){
+        this->course =  course;
+        this->classRooms = classRooms;
+        if(classRooms != NULL){
+            _isFormFilled = true;
+        }
+        else{
+           std::cout<<"there is no class room list"<<std::endl; 
+        }
+}
+
+
+// CourseFinishedForm
+
+void CourseFinishedForm::execute(){
+    if(this->_isSigned){
+        if(stu->room() == prof->room()){
+            stu->exitClass();
+        }
+       stu->graduate(course);
+       course->removeStudent(stu);
+       std::cout<<stu->getName()<<" graduated from "<<course->getName()<<std::endl;
+
+    }
+    else{
+        std::cout<<"the form hasn't been signed "<<std::endl;
+    }
+    // std::cout<<"SubscriptionToCourseForm execute"<<std::endl;
+}
+
+void    CourseFinishedForm::signeByProfessor(Professor* pro){
+    this->prof = pro;
+    if(prof == NULL){
+        std::cout<<"you have to write the teacher!"<<std::endl;
+        return ;
+    }
+    if(stu == NULL){
+        std::cout<<"you have to write the student!"<<std::endl;
+        return ;
+    }
+    if(course == NULL){
+        std::cout<<"you have to write the course!"<<std::endl;
+        return ;
+    }
+    if(prof != course->getResponsabble()){
+        std::cout<<"the professor is not responsable of the course"<<std::endl;
+        return ;  
+    }
+
+    _isFormFilled = true;
+}
 

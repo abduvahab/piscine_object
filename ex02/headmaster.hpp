@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:15:23 by areheman          #+#    #+#             */
-/*   Updated: 2024/06/20 12:13:23 by areheman         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:21:15 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <vector>
 #include "./staff.hpp"
+#include "singetons.hpp"
 
 
 class Form;
@@ -27,6 +28,12 @@ class Headmaster:public Staff{
     public:
         Headmaster(std::string p_name):Staff(p_name),_formToValidate(){}
         void receiveForm(Form* p_form);
+        void executeForm();
+
+        void fillCreateRoomForm(Form* form,Course* course, Singleton<Classroom>* classRooms);
+        // void fillCreateRoomForm(Form* form,Course* course, ClassroomList* classRooms);
+
+        
     
 };
 

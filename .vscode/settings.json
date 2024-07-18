@@ -56,6 +56,9 @@
         "complex": "cpp",
         "iomanip": "cpp",
         "cfenv": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "*.tpp": "c"
     }
 }

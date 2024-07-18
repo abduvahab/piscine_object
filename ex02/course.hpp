@@ -6,7 +6,7 @@
 /*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 16:10:55 by areheman          #+#    #+#             */
-/*   Updated: 2024/06/20 15:31:30 by areheman         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:08:50 by areheman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class Course{
         }
 
         void subscribe(Student* p_student);
+        void removeStudent(Student* p_student);
 
         bool havePlace(){
             if(_students.size() < size_t(_maximumNumberOfStudent)){
@@ -55,6 +56,8 @@ class Course{
         }
         
         std::string getName() const{return _name;}
+        Professor* getResponsabble(){return _responsable;}
+        void printStudent();
 };
 
 

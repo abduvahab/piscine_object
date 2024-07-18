@@ -26,6 +26,17 @@ void Student::subscribeCourse(Course* course){
     }
 }
 
+void Student::graduate(Course* p_course){
+    
+    for(std::vector<Course*>::iterator it=_subscribedCourse.begin(); it!=_subscribedCourse.end(); it++){
+        if((*it) == p_course){
+            _subscribedCourse.erase(it);
+            return;
+        }
+    }
+}
+
+
 void Student::fillsubscribeForm(Form* form, Course* course){
     SubscriptionToCourseForm* _form = dynamic_cast<SubscriptionToCourseForm*>(form);
     if(_form != NULL){
@@ -33,4 +44,13 @@ void Student::fillsubscribeForm(Form* form, Course* course){
         _form->setStudentName(this);
         _form->signByStudent(this);
     }
+}
+
+void Student::printCourse(){
+    std::cout<<_name<<" has subscribed to : ";
+    for(std::vector<Course*>::iterator it=_subscribedCourse.begin(); it!=_subscribedCourse.end(); it++){
+        std::cout<<(*it)->getName()<<",";
+
+    }
+    std::cout<<std::endl;
 }

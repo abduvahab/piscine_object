@@ -11,3 +11,20 @@ void Course::subscribe(Student* p_student){
         _students.push_back(p_student);
     }
 }
+void Course::removeStudent(Student* p_student){
+        for (std::vector<Student*>::iterator it=_students.begin(); it!=_students.end(); it++){
+            if(*it == p_student){
+                _students.erase(it);
+                return;
+            }
+        }
+
+}
+
+void Course::printStudent(){
+    std::cout<<"list of the studentd for "<<_name<<" course: ";
+    for(std::vector<Student*>::iterator it=_students.begin(); it!=_students.end(); it++){
+        std::cout<<(*it)->getName()<<",";
+    }
+    std::cout<<std::endl;
+}

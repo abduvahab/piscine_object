@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   professor.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: areheman <areheman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 15:43:57 by areheman          #+#    #+#             */
+/*   Updated: 2024/07/05 17:18:05 by areheman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PROFESSOR_HPP
+#define PROFESSOR_HPP
+
+
+#include "staff.hpp"
+
+
+class Course;
+
+
+
+class Professor:public Staff{
+
+    private:
+        Course* _currentCourse;
+
+    public:
+        Professor(std::string p_name):Staff(p_name),_currentCourse(NULL){}
+
+        ~Professor(){}
+
+
+        void assignCourse(Course* p_course){
+           _currentCourse = p_course;
+        //    p_course->assign(this);
+
+        }
+
+        Course* getCurrentCourse(){return _currentCourse;}
+
+        void doClass();
+
+        void closeCourse();
+
+
+        void fillCourseCreateForm(Form* form, std::string course_name, int maxNuberStudent, List<Course>* courseList, int numberofClass);
+
+        void fillCourseFinishedForm(Form* form, Course* course, Student* student);
+
+        // void fillNeedMoreClassRoomForm(Form* form);
+
+};
+
+
+
+#endif

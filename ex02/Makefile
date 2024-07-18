@@ -1,8 +1,8 @@
-NAME=ex00
+NAME=ex02
 GCC= c++
 CFLAGS=-Wall -Werror -Wextra -std=c++98
 
-SRCS=main.cpp classRoom.cpp course.cpp room.cpp secretary.cpp student.cpp professor.cpp form.cpp headmaster.cpp
+SRCS=main.cpp classRoom.cpp course.cpp room.cpp secretary.cpp student.cpp professor.cpp form.cpp headmaster.cpp singleton.cpp
 
 OBJS=${SRCS:.cpp=.o}
 
